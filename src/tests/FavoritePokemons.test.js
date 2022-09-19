@@ -15,15 +15,20 @@ describe('Testa o componente FavoritePokemons', () => {
 
   test('Teste se são exibidos todos os cards de pokémons favoritados.', () => {
     renderWithRouter(<App />);
+
     const moreDetails = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetails);
+
     const checkBoxFav = screen.getByRole('checkbox', { name: /pokémon favoritado\?/i });
     userEvent.click(checkBoxFav);
+
     const clickFavorites = screen.getByRole('link', { name: /favorite pokémons/i });
     userEvent.click(clickFavorites);
+
     const testIDname = screen.getByTestId('pokemon-name');
     const testIDtype = screen.getByTestId('pokemon-type');
     const testIDweight = screen.getByTestId('pokemon-weight');
+
     expect(testIDname).toBeInTheDocument();
     expect(testIDtype).toBeInTheDocument();
     expect(testIDweight).toBeInTheDocument();
